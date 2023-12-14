@@ -1,10 +1,31 @@
+[project]
+name = "{{ cookiecutter.package_name }}"
+authors = [
+    {name = "Adam Pirog"},
+    {email = "pirog.adam@gmail.com"},
+]
+description = "{{ cookiecutter.short_project_description }}"
+readme = "README.md"
+license = { text="MIT" }
+dynamic = ["version"]
+requires-python = ">=3.11"
+dependencies = []
+
+[tool.setuptools.dynamic]
+version = {attr = "{{ cookiecutter.package_name }}.version.__version__"}
+
+{% if cookiecutter.command_line_interface == "y" %}
+[project.scripts]
+{{ cookiecutter.package_name }} = "{{ cookiecutter.package_name }}.__main__:cli"
+{% endif %}
+
 [build-system]
-requires = ["setuptools>=42.0.0", "wheel"]
+requires = ["setuptools>=60.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [tool.black]
 line-length = 79
-target-version = ["py38"]
+target-version = ["py311"]
 
 [tool.pytest.ini_options]
 minversion = "6.0"
