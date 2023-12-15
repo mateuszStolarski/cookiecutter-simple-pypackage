@@ -20,8 +20,19 @@ version = {attr = "{{ cookiecutter.package_name }}.version.__version__"}
 {% endif %}
 
 [build-system]
-requires = ["setuptools>=60.0.0", "wheel"]
+requires = ["setuptools>=60.0.0", "wheel>=0.35.0"]
 build-backend = "setuptools.build_meta"
+
+[tool.distutils.bdist_wheel]
+universal = true
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "isort",
+    "black",
+    "pylint"
+    ]
 
 [tool.black]
 line-length = 79
@@ -36,14 +47,3 @@ testpaths = ["tests"]
 profile = "black"
 line_length = 79
 lines_after_imports = 2
-
-[tool.flake8]
-extend-ignore = [
-    "E203",  # whitespace before ':' (black)
-]
-per-file-ignores = [
-    "*/__init__.py:F401",  # imported but unused
-]
-max-complexity = 10
-max-line-length = 79
-exclude = [".git", ".eggs" ,"build", "dist"]
