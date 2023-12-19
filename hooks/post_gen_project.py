@@ -7,7 +7,7 @@ def remove_cli():
     Remove command line interface if not necessary.
     """
     remove_flag = (
-        "{% if cookiecutter.command_line_interface == 'n' %} True {% endif %}"
+        "{% if cookiecutter.command_line_interface != 'y' %} True {% endif %}"
     )
 
     if remove_flag:
