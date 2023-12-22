@@ -11,7 +11,7 @@ dynamic = ["version"]
 requires-python = ">=3.11"
 dependencies = [
 
-]
+    ]
 
 [project.optional-dependencies]
 dev = [
@@ -20,11 +20,6 @@ dev = [
     "black",
     "pylint"
     ]
-
-{%- if cookiecutter.command_line_interface == "y" %}
-[project.scripts]
-{{ cookiecutter.package_slug }} = "{{ cookiecutter.package_name }}.__main__:cli"
-{%- endif %}
 
 [build-system]
 requires = ["setuptools>=60.0.0"]
@@ -38,6 +33,11 @@ packages = ["{{ cookiecutter.package_name }}"]
 
 [tool.setuptools.dynamic]
 version = {attr = "{{ cookiecutter.package_name }}.version.__version__"}
+
+{%- if cookiecutter.command_line_interface == "y" %}
+[project.scripts]
+{{ cookiecutter.package_slug }} = "{{ cookiecutter.package_name }}.__main__:cli"
+{%- endif %}
 
 [tool.black]
 line-length = 79
