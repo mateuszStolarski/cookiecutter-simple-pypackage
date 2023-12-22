@@ -7,9 +7,7 @@ def check_package_name():
     package_name = "{{ cookiecutter.package_name }}"
 
     if not re.match(MODULE_REGEX, package_name):
-        raise ValueError(
-            f"ERROR: {package_name} is not a valid Python package name"
-        )
+        raise ValueError(f"{package_name} is not a valid Python package name")
 
 
 def main():
